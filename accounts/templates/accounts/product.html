@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Product Section</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+        line-height: 1.6;
+        color: #333;
+        background-color: #f8f9fa;
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 20px;
+      }
+
+      .products-section {
+        padding: 80px 0;
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+      }
+
+      .section-header {
+        text-align: center;
+        margin-bottom: 60px;
+      }
+
+      .section-title {
+        font-size: 3rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+      }
+
+      .section-subtitle {
+        font-size: 1.2rem;
+        opacity: 0.9;
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .products-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 30px;
+        margin-top: 50px;
+      }
+
+      .product-card {
+        background: white;
+        border-radius: 15px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        transition: all 0.3s ease;
+        color: #333;
+      }
+
+      .product-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      }
+
+      .product-image {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(45deg, #f0f0f0, #e0e0e0);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+        color: #999;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .product-image::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><rect width="100" height="100" fill="%23f8f9fa"/><circle cx="50" cy="50" r="20" fill="%23dee2e6"/></svg>')
+          center/cover;
+      }
+
+      .product-content {
+        padding: 25px;
+      }
+
+      .product-category {
+        color: #667eea;
+        font-size: 0.9rem;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+        margin-bottom: 10px;
+      }
+
+      .product-title {
+        font-size: 1.5rem;
+        font-weight: 700;
+        margin-bottom: 15px;
+        color: #2c3e50;
+      }
+
+      .product-description {
+        color: #666;
+        margin-bottom: 20px;
+        line-height: 1.6;
+      }
+
+      .product-footer {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 20px;
+      }
+
+      .product-price {
+        font-size: 1.8rem;
+        font-weight: 700;
+        color: #27ae60;
+      }
+
+      .product-price .original-price {
+        font-size: 1rem;
+        color: #999;
+        text-decoration: line-through;
+        margin-left: 10px;
+      }
+
+      .btn-primary {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        border: none;
+        padding: 12px 24px;
+        border-radius: 25px;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        text-decoration: none;
+        display: inline-block;
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
+      }
+
+      .product-badge {
+        position: absolute;
+        top: 15px;
+        right: 15px;
+        background: #e74c3c;
+        color: white;
+        padding: 5px 12px;
+        border-radius: 20px;
+        font-size: 0.8rem;
+        font-weight: 600;
+      }
+
+      .product-badge.new {
+        background: #27ae60;
+      }
+
+      .product-badge.sale {
+        background: #f39c12;
+      }
+
+      .rating {
+        display: flex;
+        align-items: center;
+        margin-bottom: 15px;
+      }
+
+      .stars {
+        color: #f39c12;
+        margin-right: 10px;
+      }
+
+      .rating-text {
+        color: #666;
+        font-size: 0.9rem;
+      }
+
+      @media (max-width: 768px) {
+        .section-title {
+          font-size: 2rem;
+        }
+
+        .products-grid {
+          grid-template-columns: 1fr;
+          gap: 20px;
+        }
+
+        .container {
+          padding: 0 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .products-section {
+          padding: 40px 0;
+        }
+
+        .section-header {
+          margin-bottom: 40px;
+        }
+
+        .product-content {
+          padding: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <section class="products-section">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Featured Products</h2>
+          <p class="section-subtitle">
+            Discover our carefully curated selection of premium products
+            designed to enhance your lifestyle
+          </p>
+        </div>
+
+        <div class="products-grid">
+          <!-- Product 1 -->
+          <div class="product-card">
+            <div class="product-image">
+              <div class="product-badge new">New</div>
+              📱
+            </div>
+            <div class="product-content">
+              <div class="product-category">Electronics</div>
+              <h3 class="product-title">Premium Smartphone</h3>
+              <div class="rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">(4.8) 124 reviews</span>
+              </div>
+              <p class="product-description">
+                Experience cutting-edge technology with our latest smartphone
+                featuring advanced camera system and lightning-fast performance.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">
+                  $899
+                  <span class="original-price">$1,199</span>
+                </div>
+                <button class="btn-primary">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 2 -->
+          <div class="product-card">
+            <div class="product-image">
+              <div class="product-badge sale">Sale</div>
+              👟
+            </div>
+            <div class="product-content">
+              <div class="product-category">Fashion</div>
+              <h3 class="product-title">Athletic Sneakers</h3>
+              <div class="rating">
+                <div class="stars">★★★★☆</div>
+                <span class="rating-text">(4.5) 89 reviews</span>
+              </div>
+              <p class="product-description">
+                Comfortable and stylish sneakers perfect for your active
+                lifestyle. Made with premium materials for durability.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">
+                  $129
+                  <span class="original-price">$179</span>
+                </div>
+                <button class="btn-primary">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 3 -->
+          <div class="product-card">
+            <div class="product-image">☕</div>
+            <div class="product-content">
+              <div class="product-category">Home & Kitchen</div>
+              <h3 class="product-title">Coffee Maker Pro</h3>
+              <div class="rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">(4.9) 156 reviews</span>
+              </div>
+              <p class="product-description">
+                Brew the perfect cup every time with our professional-grade
+                coffee maker featuring programmable settings.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">$249</div>
+                <button class="btn-primary">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 4 -->
+          <div class="product-card">
+            <div class="product-image">
+              <div class="product-badge">Hot</div>
+              🎧
+            </div>
+            <div class="product-content">
+              <div class="product-category">Audio</div>
+              <h3 class="product-title">Wireless Headphones</h3>
+              <div class="rating">
+                <div class="stars">★★★★☆</div>
+                <span class="rating-text">(4.6) 203 reviews</span>
+              </div>
+              <p class="product-description">
+                Immerse yourself in crystal-clear sound with our premium
+                wireless headphones featuring noise cancellation.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">$199</div>
+                <button class="btn-primary">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 5 -->
+          <div class="product-card">
+            <div class="product-image">📚</div>
+            <div class="product-content">
+              <div class="product-category">Books</div>
+              <h3 class="product-title">Design Masterclass</h3>
+              <div class="rating">
+                <div class="stars">★★★★★</div>
+                <span class="rating-text">(4.7) 67 reviews</span>
+              </div>
+              <p class="product-description">
+                Learn from industry experts with this comprehensive guide to
+                modern design principles and techniques.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">$39</div>
+                <button class="btn-primary">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Product 6 -->
+          <div class="product-card">
+            <div class="product-image">
+              <div class="product-badge new">New</div>
+              ⌚
+            </div>
+            <div class="product-content">
+              <div class="product-category">Wearables</div>
+              <h3 class="product-title">Smart Watch</h3>
+              <div class="rating">
+                <div class="stars">★★★★☆</div>
+                <span class="rating-text">(4.4) 91 reviews</span>
+              </div>
+              <p class="product-description">
+                Stay connected and track your fitness goals with our
+                feature-rich smartwatch with extended battery life.
+              </p>
+              <div class="product-footer">
+                <div class="product-price">
+                  $299
+                  <span class="original-price">$399</span>
+                </div>
+                <button class="btn-primary">Add to Cart</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
